@@ -11,6 +11,8 @@ import { BookService } from './book/book.service';
 import { LoginService } from './login/login.service';
 import { PasswordService } from './password/password.service';
 import { SignupService } from './signup/signup.service';
+import { DbService } from './db.service';
+import { LogoutController } from './logout/logout.controller';
 
 @Module({
   controllers: [
@@ -20,6 +22,7 @@ import { SignupService } from './signup/signup.service';
     LoginController,
     PasswordController,
     BookController,
+    LogoutController,
   ],
   providers: [
     AppService,
@@ -28,6 +31,7 @@ import { SignupService } from './signup/signup.service';
     LoginService,
     PasswordService,
     SignupService,
+    DbService,
   ],
 })
 export class AppModule {}

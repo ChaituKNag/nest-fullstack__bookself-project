@@ -1,0 +1,34 @@
+{
+  "books": [
+    {
+      "name": "War and Peace",
+      "description": "This is another great book",
+      "owner": "nagakonada",
+      "author": "Leo Tolstoy",
+      "pubYear": 1879,
+      "id": "a98d177d-18f8-4f12-84ca-8e2a87943c33"
+    },
+    {
+      "name": "Great Expectations",
+      "description": "This is a great book",
+      "owner": "nagakonada",
+      "author": "Charles Dickens",
+      "pubYear": 1861,
+      "id": "05d0fb82-a03b-4dd3-b46b-dbadf9d4fdbc"
+    }
+  ],
+  "users": [
+    {
+      "username": "nkonada",
+      "name": "Naga K",
+      "password": "Welcome123",
+      "id": "6554a694-a3c1-4cf9-a1e6-e30c405f2dd4"
+    },
+    {
+      "username": "konan",
+      "name": "Naga Ko",
+      "password": "$2b$10$JSaiZriMpQwc66A5PkoAneV0KENMmrEuj/B241OAg1Xp18IqgA/Du",
+      "id": "a8c2488f-3280-44ad-a828-ba2ca1601902"
+    }
+  ]
+}

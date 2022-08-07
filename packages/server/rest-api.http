@@ -1,0 +1,35 @@
+POST http://localhost:4000/book
+Content-Type: application/json
+
+{
+    "name": "Great Expectations",
+    "description": "This is a great book",
+    "owner": "nagakonada",
+    "author": "Charles Dickens",
+    "pubYear": 1861
+}
+
+POST http://localhost:4000/signup
+Content-Type: application/json
+
+{
+    "username": "konan",
+    "name": "Naga Ko",
+    "password": "Welcome123"
+}
+
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "username": "konan",
+    "password": "Welcome123"
+}
+
+GET http://localhost:4000/login
+
+
+POST http://localhost:4000/logout
+
+
+GET http://localhost:4000/books

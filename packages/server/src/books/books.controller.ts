@@ -7,10 +7,10 @@ export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 
   @Get()
-  getAllBooks(): BasicResponse<Book[]> {
+  async getAllBooks(): Promise<BasicResponse<Book[]>> {
     return {
       status: 200,
-      data: this.booksService.getAllBooks(),
+      data: await this.booksService.getAllBooks(),
     };
   }
 }
