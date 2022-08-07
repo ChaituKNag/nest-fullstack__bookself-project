@@ -1,7 +1,7 @@
 {
   "name": "nest-fullstack__bookself-project",
   "scripts": {
-    "start:server": "npm run start --workspace=server",
+    "start:server": "npm run start:dev --workspace=server",
     "start:client": "npm run start --workspace=client"
   },
   "workspaces": [
