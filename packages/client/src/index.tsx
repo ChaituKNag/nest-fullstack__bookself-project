@@ -9,7 +9,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <div className='bg-gradient-to-br from-orange-50 to-yellow-100'>
     <App />
+    </div>
   </React.StrictMode>
 );
 
