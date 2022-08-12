@@ -2,11 +2,11 @@ POST http://localhost:4000/book
 Content-Type: application/json
 
 {
-    "name": "Great Expectations",
-    "description": "This is a great book",
+    "name": "Sherlock Holmes - The complete series",
+    "description": "A detective novel",
     "owner": "nagakonada",
-    "author": "Charles Dickens",
-    "pubYear": 1861
+    "author": "Arther Conan Doyle",
+    "pubYear": 1878
 }
 
 POST http://localhost:4000/signup
@@ -23,10 +23,10 @@ Content-Type: application/json
 
 {
     "username": "konan",
-    "password": "Donttellany1"
+    "password": "Welcome123"
 }
 
-GET http://localhost:4000/login
+GET http://localhost:4000/login/status
 
 POST http://localhost:4000/logout
 
@@ -41,3 +41,37 @@ Content-Type: application/json
 
 
 GET http://localhost:4000/books
+
+GET http://localhost:4000/book/a98d177d-18f8-4f12-84ca-8e2a87943c33
+GET http://localhost:4000/book/594a2d1b-24d7-4e36-a7bf-3bced347097e
+
+POST http://localhost:4000/book/a98d177d-18f8-4f12-84ca-8e2a87943c33
+Content-Type: application/json
+
+{
+    "description": "This is a book by Leo"
+}
+
+POST http://localhost:4000/book/594a2d1b-24d7-4e36-a7bf-3bced347097e
+Content-Type: application/json
+
+{
+    "description": "A detective novel by Arthur"
+}
+
+DELETE http://localhost:4000/book/05d0fb82-a03b-4dd3-b46b-dbadf9d4fdbc
+POST http://localhost:4000/book
+Content-Type: application/json
+
+{
+    "name": "Test book to delete",
+    "description": "A temp book",
+    "author": "John Doe",
+    "pubYear": 2022
+}
+
+@bookToDelete = b32af862-a4a4-4c61-842c-b8ff5fb0fd17
+
+DELETE http://localhost:4000/book/{{bookToDelete}}
+
+

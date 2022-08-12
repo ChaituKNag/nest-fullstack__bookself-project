@@ -2,7 +2,7 @@
   "books": [
     {
       "name": "War and Peace",
-      "description": "This is another great book",
+      "description": "This is a book by Leo",
       "owner": "nagakonada",
       "author": "Leo Tolstoy",
       "pubYear": 1879,
@@ -15,6 +15,14 @@
       "author": "Charles Dickens",
       "pubYear": 1861,
       "id": "05d0fb82-a03b-4dd3-b46b-dbadf9d4fdbc"
+    },
+    {
+      "name": "Sherlock Holmes - The complete series",
+      "description": "A detective novel by Arthur",
+      "owner": "konan",
+      "author": "Arther Conan Doyle",
+      "pubYear": 1878,
+      "id": "594a2d1b-24d7-4e36-a7bf-3bced347097e"
     }
   ],
   "users": [

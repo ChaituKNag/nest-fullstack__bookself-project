@@ -45,4 +45,15 @@ export class DbService {
 
     return await response.json();
   }
+
+  async delete(relativeUrl: string) {
+    const response = await fetch(`${URL_PREFIX}${relativeUrl}`, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return await response.json();
+  }
 }

@@ -6,8 +6,10 @@ import {
   Post,
   Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { Response, Request } from 'express';
+import { AuthGuard } from 'src/_guards/auth.guard';
 import { LoginService } from './login.service';
 
 @Controller('login')
@@ -39,19 +41,10 @@ export class LoginController {
   }
 
   @Get('status')
-  async validateUser(@Req() request: Request) {
-    const { token } = request.cookies;
-
-    if (!token) {
-      return {
-        status: 'failure',
-      };
-    }
-
-    const isValid = await this.loginService.validateSession(token);
-
+  @UseGuards(AuthGuard)
+  async validateUser() {
     return {
-      status: isValid ? 'success' : 'failure',
+      status: 'success',
     };
   }
 
