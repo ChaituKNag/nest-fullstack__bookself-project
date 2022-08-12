@@ -59,8 +59,7 @@ export class LoginService {
     const [user]: User[] = await this.dbService.get(
       `/users?username=${username}`,
     );
-    return await this.dbService.put(`/users/${user.id}`, {
-      ...user,
+    return await this.dbService.patch(`/users/${user.id}`, {
       password: await encryptPassword(newPassword),
     });
   }

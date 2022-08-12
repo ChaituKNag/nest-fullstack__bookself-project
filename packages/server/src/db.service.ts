@@ -33,4 +33,16 @@ export class DbService {
 
     return await response.json();
   }
+
+  async patch<T>(relativeUrl: string, body: T) {
+    const response = await fetch(`${URL_PREFIX}${relativeUrl}`, {
+      method: 'patch',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return await response.json();
+  }
 }
