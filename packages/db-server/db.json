@@ -19,16 +19,16 @@
   ],
   "users": [
     {
-      "username": "nkonada",
-      "name": "Naga K",
-      "password": "Welcome123",
-      "id": "6554a694-a3c1-4cf9-a1e6-e30c405f2dd4"
-    },
-    {
       "username": "konan",
       "name": "Naga Ko",
-      "password": "$2b$10$JSaiZriMpQwc66A5PkoAneV0KENMmrEuj/B241OAg1Xp18IqgA/Du",
+      "password": "$2b$10$zzfUoIUNn2AN/eNUDquNVe4N4VARHnii74gEUKkKPQ6PnZTujPYli",
       "id": "a8c2488f-3280-44ad-a828-ba2ca1601902"
+    },
+    {
+      "username": "nkonada",
+      "name": "N Konada C",
+      "password": "$2b$10$SwJ.z.Acf1puPELASREhkOItQQvn4FIVtSwgOywzIwGGyWsPNbYE2",
+      "id": "c283521f-b99e-404d-bbb6-6ec92eeca9e0"
     }
   ]
 }

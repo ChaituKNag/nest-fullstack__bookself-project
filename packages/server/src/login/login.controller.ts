@@ -38,7 +38,7 @@ export class LoginController {
     };
   }
 
-  @Get()
+  @Get('status')
   async validateUser(@Req() request: Request) {
     const { token } = request.cookies;
 
@@ -52,6 +52,27 @@ export class LoginController {
 
     return {
       status: isValid ? 'success' : 'failure',
+    };
+  }
+
+  @Post('reset_pwd')
+  async updatePassowrd(@Req() request: Request, @Res() response: Response) {
+    const { username, existingPassword, newPassword } = request.body;
+
+    if (
+      await this.loginService.validateCredentials(username, existingPassword)
+    ) {
+      await this.loginService.resetPassword(username, newPassword);
+      response.cookie('token', '');
+      return {
+        status: true,
+        message: 'Password has been reset successfully!',
+      };
+    }
+
+    return {
+      status: false,
+      error: 'Passwords did not match',
     };
   }
 }

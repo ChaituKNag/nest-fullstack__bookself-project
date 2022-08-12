@@ -13,8 +13,8 @@ POST http://localhost:4000/signup
 Content-Type: application/json
 
 {
-    "username": "konan",
-    "name": "Naga Ko",
+    "username": "nkonada",
+    "name": "N Konada C",
     "password": "Welcome123"
 }
 
@@ -23,13 +23,21 @@ Content-Type: application/json
 
 {
     "username": "konan",
-    "password": "Welcome123"
+    "password": "Donttellany1"
 }
 
 GET http://localhost:4000/login
 
-
 POST http://localhost:4000/logout
+
+POST http://localhost:4000/login/reset_pwd
+Content-Type: application/json
+
+{
+    "username": "konan",
+    "existingPassword": "Welcome123",
+    "newPassword": "Donttellany1"
+}
 
 
 GET http://localhost:4000/books

@@ -21,4 +21,16 @@ export class DbService {
 
     return await response.json();
   }
+
+  async put<T>(relativeUrl: string, body: T) {
+    const response = await fetch(`${URL_PREFIX}${relativeUrl}`, {
+      method: 'put',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return await response.json();
+  }
 }
