@@ -1,11 +1,14 @@
 {
   "name": "nest-fullstack__bookself-project",
+  "private": true,
   "scripts": {
     "start:server": "npm run start:dev --workspace=server",
     "start:db": "npm run start --workspace=db-server",
-    "start:client": "npm run start --workspace=client"
+    "start:client": "npm run dev --workspace=client"
   },
   "workspaces": [
-    "packages/server", "packages/client", "packages/db-server"
+    "packages/server",
+    "packages/client",
+    "packages/db-server"
   ]
 }
