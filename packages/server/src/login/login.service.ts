@@ -17,7 +17,8 @@ export class LoginService {
     return user;
   }
 
-  async getUserInfoFromToken(token: string): Promise<User> {
+  async getUserInfoFromToken(token: string): Promise<User | null> {
+    if (!token) return null;
     const { username } = <{ username: string }>jwt.verify(token, SHHHH);
 
     return await this.getUserInfo(username);
@@ -41,6 +42,9 @@ export class LoginService {
   }
 
   async validateSession(token: string) {
+    if (!token) {
+      return false;
+    }
     const { username } = <{ username: string }>jwt.verify(token, SHHHH);
 
     const user = await this.getUserInfo(username);
