@@ -11,6 +11,9 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const token = getCookieValue(req.headers.cookie, "token");
+  if (!token) {
+    res.status(403).json({ name: "" });
+  }
   try {
     const resp = await fetch(
       `${process.env.SERVER_HOST}/api/login/status?token=${token}`

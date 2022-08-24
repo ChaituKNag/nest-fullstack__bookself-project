@@ -31,6 +31,7 @@ export class LoginController {
       response.cookie('token', token);
       return {
         status: 'success',
+        token,
       };
     }
 

@@ -26,6 +26,9 @@ export class LoginService {
 
   async loginUser(username: string, password: string) {
     const user = await this.getUserInfo(username);
+    if (!user) {
+      return '';
+    }
     const passwordsMatch = await comparePassword(password, user.password);
 
     if (passwordsMatch) {
@@ -42,6 +45,7 @@ export class LoginService {
   }
 
   async validateSession(token: string) {
+    console.log('validateSession', token);
     if (!token) {
       return false;
     }
