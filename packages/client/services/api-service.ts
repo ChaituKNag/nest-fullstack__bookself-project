@@ -1,19 +1,17 @@
-const domain = process.env.REACT_APP_API_DOMAIN;
-
-export async function httpPost<T>(relativeUrl: string, body: T) {
-  const response: Response = await fetch(`${domain}${relativeUrl}`, {
+export async function httpPost<T>(url: string, body?: T) {
+  const response: Response = await fetch(`${url}`, {
     method: "post",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(body)
+    body: typeof body === "string" ? body : JSON.stringify(body)
   });
 
   return await response.json();
 }
 
-export async function httpGet(relativeUrl: string) {
-  const response: Response = await fetch(`${domain}${relativeUrl}`, {
+export async function httpGet(url: string) {
+  const response: Response = await fetch(`${url}`, {
     method: "get",
     headers: {
       "Content-Type": "application/json"
@@ -23,20 +21,20 @@ export async function httpGet(relativeUrl: string) {
   return await response.json();
 }
 
-export async function httpPatch<T>(relativeUrl: string, body: T) {
-  const response: Response = await fetch(`${domain}${relativeUrl}`, {
+export async function httpPatch<T>(url: string, body: T) {
+  const response: Response = await fetch(`${url}`, {
     method: "patch",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(body)
+    body: typeof body === "string" ? body : JSON.stringify(body)
   });
 
   return await response.json();
 }
 
-export async function httpDelete(relativeUrl: string) {
-  const response: Response = await fetch(`${domain}${relativeUrl}`, {
+export async function httpDelete(url: string) {
+  const response: Response = await fetch(`${url}`, {
     method: "delete",
     headers: {
       "Content-Type": "application/json"

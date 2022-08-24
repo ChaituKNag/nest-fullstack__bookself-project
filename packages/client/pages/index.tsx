@@ -31,12 +31,15 @@ const Home: NextPage<HomeProps> = ({ authenticated }) => {
 
 export async function getServerSideProps({ req, res }: NextPageContext) {
   const token = getCookieValue(req?.headers.cookie, "token");
-  const resp = await fetch(`${process.env.HOST}/api/login/status`, {
-    headers: {
-      "Content-Type": "application/json",
-      cookie: `token=${token}`
+  const resp = await fetch(
+    `${process.env.NEXT_PUBLIC_WEB_HOST}/api/login/status`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        cookie: `token=${token}`
+      }
     }
-  });
+  );
   const status = await resp.json();
 
   console.log(token, status);

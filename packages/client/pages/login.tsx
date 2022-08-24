@@ -1,24 +1,28 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
+import { httpPost } from "../services/api-service";
 
 const Login: NextPage = () => {
+  const router = useRouter();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const response = await fetch("/api/login", {
-      method: "post",
-      body: JSON.stringify({
+    const data = await httpPost(
+      `${process.env.NEXT_PUBLIC_WEB_HOST}/api/login`,
+      {
         username,
         password
-      })
-    });
-
-    const data = await response.json();
-
+      }
+    );
     console.log(data);
+
+    if (data.status === "success") {
+      router.push("/");
+    }
   };
   return (
     <div>

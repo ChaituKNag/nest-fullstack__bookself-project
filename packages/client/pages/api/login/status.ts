@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
+import { httpGet } from "../../../services/api-service";
 import { getCookieValue } from "../../../utils/session";
 
 type Data = {
@@ -15,11 +16,9 @@ export default async function handler(
     res.status(403).json({ name: "" });
   }
   try {
-    const resp = await fetch(
+    const isValid = await httpGet(
       `${process.env.SERVER_HOST}/api/login/status?token=${token}`
     );
-    const isValid = await resp.json();
-    console.log("isValid", isValid);
 
     res.status(200).json({ name: "John Doe" });
   } catch (error) {

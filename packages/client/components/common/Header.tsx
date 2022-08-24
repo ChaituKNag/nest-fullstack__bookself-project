@@ -1,7 +1,22 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
+import { httpPost } from "../../services/api-service";
 
 const Header = () => {
+  console.log(
+    "process.env.NEXT_PUBLIC_WEB_HOST",
+    process.env.NEXT_PUBLIC_WEB_HOST
+  );
+  const router = useRouter();
+  const handleLogout = async () => {
+    const data = await httpPost(
+      `${process.env.NEXT_PUBLIC_WEB_HOST}/api/logout`
+    );
+    if (data?.status === "success") {
+      router.push("/login");
+    }
+  };
   return (
     <div className="bg-orange-100 px-3 py-2">
       <div className="flex items-center  max-w-3xl w-full mx-auto">
@@ -20,7 +35,10 @@ const Header = () => {
               Signup
             </a>
           </Link>
-          <button className="font-semibold border border-red-500 px-3 py-1 rounded hover:bg-red-100">
+          <button
+            onClick={handleLogout}
+            className="font-semibold border border-red-500 px-3 py-1 rounded hover:bg-red-100"
+          >
             Logout
           </button>
         </div>
