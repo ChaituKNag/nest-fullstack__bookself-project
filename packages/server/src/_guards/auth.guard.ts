@@ -9,7 +9,10 @@ export class AuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): Promise<boolean> {
     return new Promise((resolve) => {
       const request: Request = context.switchToHttp().getRequest();
-      const { token } = request.cookies;
+      let token = request.cookies.token;
+      if (!token) {
+        token = request.query.token;
+      }
       if (!token) return resolve(false);
       this.loginService.validateSession(token).then((isValid) => {
         if (isValid) {

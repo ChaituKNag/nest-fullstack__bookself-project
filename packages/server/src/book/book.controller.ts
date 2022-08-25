@@ -29,7 +29,7 @@ export class BookController {
     const user = await this.loginService.getUserInfoFromToken(token);
     return await this.bookService.addBook({
       ...bookInfo,
-      owner: user.username,
+      owner: user?.username,
     });
   }
 
@@ -51,7 +51,7 @@ export class BookController {
     const existingDetails: Book = await this.bookService.getBook(bookId);
     const { token } = req.cookies;
     const user = await this.loginService.getUserInfoFromToken(token);
-    if (existingDetails.owner !== user.username) {
+    if (existingDetails.owner !== user?.username) {
       res.status(403).json({
         statusCode: 403,
         message: 'Book not owned by the user',
@@ -72,7 +72,7 @@ export class BookController {
     const existingDetails: Book = await this.bookService.getBook(bookId);
     const { token } = req.cookies;
     const user = await this.loginService.getUserInfoFromToken(token);
-    if (existingDetails.owner !== user.username) {
+    if (existingDetails.owner !== user?.username) {
       res.status(403).json({
         statusCode: 403,
         message: 'Book not owned by the user',

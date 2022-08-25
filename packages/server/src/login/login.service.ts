@@ -17,7 +17,8 @@ export class LoginService {
     return user;
   }
 
-  async getUserInfoFromToken(token: string): Promise<User> {
+  async getUserInfoFromToken(token: string): Promise<User | null> {
+    if (!token) return null;
     const { username } = <{ username: string }>jwt.verify(token, SHHHH);
 
     return await this.getUserInfo(username);
@@ -25,6 +26,9 @@ export class LoginService {
 
   async loginUser(username: string, password: string) {
     const user = await this.getUserInfo(username);
+    if (!user) {
+      return '';
+    }
     const passwordsMatch = await comparePassword(password, user.password);
 
     if (passwordsMatch) {
@@ -41,6 +45,10 @@ export class LoginService {
   }
 
   async validateSession(token: string) {
+    console.log('validateSession', token);
+    if (!token) {
+      return false;
+    }
     const { username } = <{ username: string }>jwt.verify(token, SHHHH);
 
     const user = await this.getUserInfo(username);
