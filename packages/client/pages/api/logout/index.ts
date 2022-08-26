@@ -16,7 +16,7 @@ export default async function handler(
     const data = await httpPost(`${process.env.SERVER_HOST}/api/logout`);
 
     if (data?.status === "success") {
-      res.setHeader("Set-Cookie", [`token=''; path=/; HttpOnly`]);
+      res.setHeader("Set-Cookie", [`token=; path=/; HttpOnly`]);
       res.status(200).json({
         message: "Logout success",
         status: data.status

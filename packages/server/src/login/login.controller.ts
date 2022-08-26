@@ -43,7 +43,7 @@ export class LoginController {
 
   @Get('status')
   @UseGuards(AuthGuard)
-  async validateUser() {
+  validateUser() {
     return {
       status: 'success',
     };

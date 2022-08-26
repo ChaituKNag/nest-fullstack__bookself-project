@@ -1,27 +1,35 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { getCookie } from "cookies-next";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { httpGet } from "../../../services/api-service";
-import { getCookieValue } from "../../../utils/session";
 
 type Data = {
-  name: string;
+  status: string;
+  message?: string;
 };
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const token = getCookieValue(req.headers.cookie, "token");
+  let token = getCookie("token", { req, res }) || <string>req.query.token;
+
   if (!token) {
-    res.status(403).json({ name: "" });
+    res.status(403).json({ status: "failure", message: "Unauthenticated" });
+    return;
   }
+
   try {
-    const isValid = await httpGet(
-      `${process.env.SERVER_HOST}/api/login/status?token=${token}`
+    const { status } = await httpGet(
+      `${process.env.SERVER_HOST}/api/login/status?token=${token || ""}`
     );
 
-    res.status(200).json({ name: "John Doe" });
+    if (status && status === "success") {
+      res.status(200).json({ status });
+    } else {
+      throw Error();
+    }
   } catch (error) {
-    res.status(403).json({ name: "" });
+    res.status(403).json({ status: "failure", message: "Server error" });
   }
 }

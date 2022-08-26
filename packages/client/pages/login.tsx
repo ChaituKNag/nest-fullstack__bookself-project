@@ -1,9 +1,10 @@
-import type { NextPage } from "next";
+import { getCookie } from "cookies-next";
+import type { NextPage, NextPageContext } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
-import { httpPost } from "../services/api-service";
+import { httpGet, httpPost } from "../services/api-service";
 
 const Login: NextPage = () => {
   const router = useRouter();
@@ -18,7 +19,6 @@ const Login: NextPage = () => {
         password
       }
     );
-    console.log(data);
 
     if (data.status === "success") {
       router.push("/");
@@ -54,7 +54,8 @@ const Login: NextPage = () => {
           />
           <button
             type="submit"
-            className="self-end border border-green-700 px-2 py-1 rounded bg-green-200 hover:bg-green-300 font-semibold"
+            className="self-end border border-green-700 px-2 py-1 rounded bg-green-200 hover:bg-green-300 font-semibold disabled:opacity-60 disabled:hover:bg-green-200"
+            disabled={!username || !password}
           >
             Submit
           </button>
@@ -78,5 +79,27 @@ const Login: NextPage = () => {
     </div>
   );
 };
+
+export async function getServerSideProps({ req, res }: NextPageContext) {
+  const token = getCookie("token", { req, res });
+  const resp = await httpGet(
+    `${process.env.NEXT_PUBLIC_WEB_HOST}/api/login/status?token=${token}`
+  );
+
+  if (resp.status === "success") {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: true
+      }
+    };
+  }
+
+  return {
+    props: {
+      authenticated: resp.status === "success"
+    }
+  };
+}
 
 export default Login;

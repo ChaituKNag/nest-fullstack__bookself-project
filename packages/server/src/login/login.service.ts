@@ -45,8 +45,7 @@ export class LoginService {
   }
 
   async validateSession(token: string) {
-    console.log('validateSession', token);
-    if (!token) {
+    if (!token.trim()) {
       return false;
     }
     const { username } = <{ username: string }>jwt.verify(token, SHHHH);

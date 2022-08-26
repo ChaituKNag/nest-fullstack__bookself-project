@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { setCookie } from "cookies-next";
 import { httpPost } from "../../../services/api-service";
 
 type Data = {
@@ -19,7 +20,7 @@ export default async function handler(
     );
 
     if (data?.status === "success") {
-      res.setHeader("Set-Cookie", [`token=${data.token}; path=/; HttpOnly`]);
+      setCookie("token", data.token, { req, res });
       res.status(200).json({
         message: "Login success",
         status: data.status

@@ -1,7 +1,8 @@
+import { getCookie } from "cookies-next";
 import type { NextPage, NextPageContext } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { getCookieValue } from "../utils/session";
+import { httpGet } from "../services/api-service";
 interface HomeProps {
   authenticated: boolean;
 }
@@ -30,21 +31,12 @@ const Home: NextPage<HomeProps> = ({ authenticated }) => {
 };
 
 export async function getServerSideProps({ req, res }: NextPageContext) {
-  const token = getCookieValue(req?.headers.cookie, "token");
-  const resp = await fetch(
-    `${process.env.NEXT_PUBLIC_WEB_HOST}/api/login/status`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        cookie: `token=${token}`
-      }
-    }
+  const token = getCookie("token", { req, res });
+  const resp = await httpGet(
+    `${process.env.NEXT_PUBLIC_WEB_HOST}/api/login/status?token=${token}`
   );
-  const status = await resp.json();
 
-  console.log(token, status);
-
-  if (!status.name) {
+  if (resp.status !== "success") {
     return {
       // redirect: {
       //   destination: "/login",
@@ -59,7 +51,7 @@ export async function getServerSideProps({ req, res }: NextPageContext) {
   return {
     props: {
       authenticated: true
-    } // will be passed to the page component as props
+    }
   };
 }
 
