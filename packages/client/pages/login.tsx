@@ -44,8 +44,6 @@ const Login: NextPage = () => {
       }
     });
 
-  console.log(errors, touched);
-
   return (
     <div>
       <Head>
@@ -54,8 +52,8 @@ const Login: NextPage = () => {
       <form onSubmit={handleSubmit}>
         <div className="max-w-lg mx-auto flex flex-col">
           <h2 className="text-center py-5 text-2xl font-semibold">Login</h2>
-          <label className="block relative mb-5" htmlFor="username">
-            <span className="block text-sm">Username</span>
+          <label className="block relative mb-1" htmlFor="username">
+            <span className="block text-sm font-semibold">Username</span>
             <input
               className="w-full px-2 py-3 border mb-5 focus:border-yellow-500 border-yellow-600 rounded outline-0 focus:bg-orange-50"
               id="username"
@@ -72,8 +70,8 @@ const Login: NextPage = () => {
               </p>
             )}
           </label>
-          <label className="block relative mb-3" htmlFor="password">
-            <span className="block text-sm">Password</span>
+          <label className="block relative mb-1" htmlFor="password">
+            <span className="block text-sm font-semibold">Password</span>
 
             <input
               className="w-full px-2 py-3 border mb-5 focus:border-yellow-500 border-yellow-600 rounded outline-0 focus:bg-orange-50"
@@ -103,13 +101,14 @@ const Login: NextPage = () => {
                 signup
               </a>
             </Link>
-            . Forgot password?{" "}
+          </p>
+          <p className="text-sm self-end mt-3">
+            Forgot password?{" "}
             <Link href="/password-reset">
               <a className="font-semibold text-blue-600 hover:text-blue-800">
                 reset password
               </a>
             </Link>
-            .
           </p>
         </div>
       </form>

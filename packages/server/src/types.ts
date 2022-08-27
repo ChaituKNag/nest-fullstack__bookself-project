@@ -16,11 +16,14 @@ export type UpdateBookPayload = {
   pubYear: string;
 };
 
-export interface User {
-  id: string;
-  username: string;
+export interface UserPayload {
   name: string;
+  username: string;
   password: string;
+}
+
+export interface User extends UserPayload {
+  id: string;
 }
 
 export interface DBData {

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DbService } from 'src/db.service';
-import { User } from 'src/types';
+import { User, UserPayload } from 'src/types';
 import { encryptPassword } from 'src/utils';
 import { v4 as uuid } from 'uuid';
 
@@ -8,7 +8,7 @@ import { v4 as uuid } from 'uuid';
 export class SignupService {
   constructor(private readonly dbService: DbService) {}
 
-  async createUser(userInfo: User) {
+  async createUser(userInfo: UserPayload) {
     const userExists = <User[]>(
       await this.dbService.get(`/users?username=${userInfo.username}`)
     );
@@ -16,16 +16,23 @@ export class SignupService {
     if (userExists.length === 0) {
       const encryptedPwd = await encryptPassword(userInfo.password);
 
-      return await this.dbService.post('/users', {
+      const resp = await this.dbService.post('/users', {
         ...userInfo,
         password: encryptedPwd,
         id: uuid(),
       });
+
+      if (resp) {
+        return {
+          status: 'success',
+          message: 'User created',
+        };
+      }
     }
 
-    return Promise.resolve({
-      status: 500,
-      data: null,
-    });
+    return {
+      status: 'failure',
+      message: 'User creation failed',
+    };
   }
 }

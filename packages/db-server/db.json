@@ -43,6 +43,12 @@
       "name": "Admin Konada",
       "password": "$2b$10$cKkANERwxaXP7daGcEMfw.k8rVFRHjp//S4u9zE6HJp9HB77EiOFO",
       "id": "0d811edb-a110-4bc9-8f38-2ca536955134"
+    },
+    {
+      "name": "Test Konada",
+      "username": "testkonada",
+      "password": "$2b$10$5T7Z7d9Xzy1TNZ1FGZQchOak933DskEzWCQ6g8/GNhvyp4K3O8xX6",
+      "id": "c4547499-108d-4230-a717-c83e2d8bb1bc"
     }
   ]
 }
