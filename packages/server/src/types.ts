@@ -32,6 +32,6 @@ export interface DBData {
 }
 
 export interface BasicResponse<T> {
-  status: number;
+  status: string;
   data: T;
 }

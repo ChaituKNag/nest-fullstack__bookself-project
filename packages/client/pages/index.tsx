@@ -2,6 +2,7 @@ import { getCookie } from "cookies-next";
 import type { NextPage, NextPageContext } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import BooksList from "../components/feature/BooksList";
 import { httpGet } from "../services/api-service";
 interface HomeProps {
   authenticated: boolean;
@@ -24,7 +25,7 @@ const Home: NextPage<HomeProps> = ({ authenticated }) => {
           </Link>
         </p>
       ) : (
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
+        <BooksList />
       )}
     </div>
   );

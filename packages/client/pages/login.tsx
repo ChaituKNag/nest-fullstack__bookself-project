@@ -4,9 +4,8 @@ import type { NextPage, NextPageContext } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FormEvent, useState } from "react";
-import { httpGet, httpPost } from "../services/api-service";
 import * as Yup from "yup";
+import { httpGet, httpPost } from "../services/api-service";
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string()

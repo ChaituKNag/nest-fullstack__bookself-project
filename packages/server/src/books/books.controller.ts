@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { BasicResponse, Book } from 'src/types';
 import { BooksService } from './books.service';
 
@@ -9,7 +9,7 @@ export class BooksController {
   @Get()
   async getAllBooks(): Promise<BasicResponse<Book[]>> {
     return {
-      status: 200,
+      status: 'success',
       data: await this.booksService.getAllBooks(),
     };
   }
