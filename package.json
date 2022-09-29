@@ -4,11 +4,15 @@
   "scripts": {
     "start:server": "npm run start:dev --workspace=server",
     "start:db": "npm run start --workspace=db-server",
-    "start:client": "npm run dev --workspace=client"
+    "start:client": "npm run dev --workspace=client",
+    "start": "concurrently npm:start:db npm:start:server npm:start:client"
   },
   "workspaces": [
     "packages/server",
     "packages/client",
     "packages/db-server"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "^7.4.0"
+  }
 }

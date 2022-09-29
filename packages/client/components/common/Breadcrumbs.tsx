@@ -8,12 +8,14 @@ interface BreadcrumbsProps {
 
 const Breadcrumbs: FC<BreadcrumbsProps> = ({ list }) => {
   return (
-    <div className="text-xs mt-4 mb-3 bg-cyan-50 px-4 py-2 border border-cyan-200 rounded rounded-md">
+    <div className="text-xs mt-4 mb-3 py-2">
       {list.map((item, index) => (
         <>
           {item.link ? (
             <Link key={item.title} href={item.link}>
-              <a className="text-cyan-600 underline">{item.title}</a>
+              <a className="text-accent-500 underline font-bold">
+                {item.title}
+              </a>
             </Link>
           ) : (
             <span key={item.title} className="">

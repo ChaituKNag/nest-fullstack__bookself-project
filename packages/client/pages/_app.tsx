@@ -6,9 +6,9 @@ import Footer from "../components/common/Footer";
 function MyApp({ Component, pageProps }: AppProps) {
   const { authenticated } = pageProps;
   return (
-    <div className="App flex flex-col min-h-screen text-gray-600">
+    <div className="App flex flex-col min-h-screen text-base-700 font-body bg-base-50">
       <Header authenticated={authenticated} />
-      <div className="flex-1 max-w-3xl w-full mx-auto">
+      <div className="flex-1">
         <Component {...pageProps} />
       </div>
       <Footer />

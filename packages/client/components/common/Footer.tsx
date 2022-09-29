@@ -1,13 +1,14 @@
-import React from 'react'
+import React from "react";
+import SingleColumn from "../styled/SingleColumn";
 
 const Footer = () => {
   return (
-    <div className='bg-orange-100 px-3 py-2'>
-        <div className='flex items-center  max-w-3xl w-full mx-auto text-sm py-2'>
-            &copy; Naga Konada Development Works
-        </div>
+    <div className="px-3 py-2">
+      <SingleColumn className="flex items-center text-sm py-2">
+        &copy; Naga Konada Development Works
+      </SingleColumn>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

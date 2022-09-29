@@ -5,6 +5,10 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as Yup from "yup";
+import Breadcrumbs from "../components/common/Breadcrumbs";
+import Button from "../components/common/Button";
+import Hero from "../components/common/Hero";
+import SingleColumn from "../components/styled/SingleColumn";
 import { httpGet, httpPost } from "../services/api-service";
 
 const LoginSchema = Yup.object().shape({
@@ -44,17 +48,25 @@ const Login: NextPage = () => {
     });
 
   return (
-    <div>
+    <>
       <Head>
         <title>Login</title>
       </Head>
       <form onSubmit={handleSubmit}>
-        <div className="max-w-lg mx-auto flex flex-col">
-          <h2 className="text-center py-5 text-2xl font-semibold">Login</h2>
-          <label className="block relative mb-1" htmlFor="username">
-            <span className="block text-sm font-semibold">Username</span>
+        <Hero
+          title="Login"
+          caption="Use your username and password to login to your account."
+        />
+        <SingleColumn>
+          <Breadcrumbs
+            list={[{ title: "Home", link: "/" }, { title: "Login" }]}
+          />
+          <label className="block relative mb-2" htmlFor="username">
+            <span className="block text-sm font-semibold text-base-500">
+              Username
+            </span>
             <input
-              className="w-full px-2 py-3 border mb-5 focus:border-yellow-500 border-yellow-600 rounded outline-0 focus:bg-orange-50"
+              className="w-full md:w-1/2 px-4 py-3 mb-5  rounded outline-0 bg-base-100"
               id="username"
               type="text"
               placeholder="enter your username"
@@ -69,11 +81,13 @@ const Login: NextPage = () => {
               </p>
             )}
           </label>
-          <label className="block relative mb-1" htmlFor="password">
-            <span className="block text-sm font-semibold">Password</span>
+          <label className="block relative mb-2" htmlFor="password">
+            <span className="block text-sm font-semibold text-base-500">
+              Password
+            </span>
 
             <input
-              className="w-full px-2 py-3 border mb-5 focus:border-yellow-500 border-yellow-600 rounded outline-0 focus:bg-orange-50"
+              className="w-full md:w-1/2 px-4 py-3 mb-5  rounded outline-0 bg-base-100"
               id="password"
               type="password"
               placeholder="****"
@@ -86,32 +100,27 @@ const Login: NextPage = () => {
               {errors.password && touched.password && errors.password}
             </p>
           </label>
-          <button
+          <Button
             type="submit"
-            className="self-end border border-green-700 px-2 py-1 rounded bg-green-200 hover:bg-green-300 font-semibold disabled:opacity-60 disabled:hover:bg-green-200"
             disabled={!!errors.username || !!errors.password}
           >
             Submit
-          </button>
+          </Button>
           <p className="text-sm self-end mt-3">
             New here?{" "}
             <Link href="/signup">
-              <a className="font-semibold text-blue-600 hover:text-blue-800">
-                signup
-              </a>
+              <a className="font-semibold text-accent-500">signup</a>
             </Link>
           </p>
           <p className="text-sm self-end mt-3">
             Forgot password?{" "}
             <Link href="/password-reset">
-              <a className="font-semibold text-blue-600 hover:text-blue-800">
-                reset password
-              </a>
+              <a className="font-semibold text-accent-500">reset password</a>
             </Link>
           </p>
-        </div>
+        </SingleColumn>
       </form>
-    </div>
+    </>
   );
 };
 

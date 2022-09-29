@@ -4,6 +4,11 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import * as Yup from "yup";
+import Breadcrumbs from "../components/common/Breadcrumbs";
+import Button from "../components/common/Button";
+import Hero from "../components/common/Hero";
+import InputField from "../components/common/InputField";
+import SingleColumn from "../components/styled/SingleColumn";
 import { httpPost } from "../services/api-service";
 
 const SignupSchema = Yup.object().shape({
@@ -59,102 +64,76 @@ const Signup: NextPage = () => {
         <title>Signup</title>
       </Head>
       <form onSubmit={handleSubmit}>
-        <div className="max-w-lg mx-auto flex flex-col">
-          <h2 className="text-center py-5 text-2xl font-semibold">Signup</h2>
-          <label className="block relative mb-1" htmlFor="username">
-            <span className="block text-sm font-semibold">Name</span>
-
-            <input
-              className="w-full mb-5 px-2 py-3 border focus:border-yellow-500 border-yellow-600 rounded outline-0 focus:bg-orange-50"
+        <div className="flex flex-col">
+          <Hero
+            title="Signup"
+            caption="Create a new account to add books as owner"
+          />
+          <SingleColumn>
+            <Breadcrumbs
+              list={[{ title: "Home", link: "/" }, { title: "Signup" }]}
+            />
+            <InputField
               id="name"
-              type="text"
+              value={values.name}
+              label="Name"
               placeholder="enter your name"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.name}
+              showError={!!errors.name && touched.name}
+              errorMessage={errors.name}
             />
-            {errors.name && touched.name && (
-              <p className="text-red-500 text-sm absolute inset-x-0 bottom-0">
-                {errors.name}
-              </p>
-            )}
-          </label>
-          <label className="block relative mb-1" htmlFor="username">
-            <span className="block text-sm font-semibold">Username</span>
-
-            <input
-              className="w-full mb-5 px-2 py-3 border focus:border-yellow-500 border-yellow-600 rounded outline-0 focus:bg-orange-50"
+            <InputField
               id="username"
-              type="text"
+              value={values.username}
+              label="Username"
               placeholder="enter your username"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.username}
+              showError={!!errors.username && touched.username}
+              errorMessage={errors.username}
             />
-            {errors.username && touched.username && (
-              <p className="text-red-500 text-sm absolute inset-x-0 bottom-0">
-                {errors.username}
-              </p>
-            )}
-          </label>
-          <label className="block relative mb-1" htmlFor="password">
-            <span className="block text-sm font-semibold">Password</span>
-
-            <input
-              className="w-full mb-5 px-2 py-3 border focus:border-yellow-500 border-yellow-600 rounded outline-0 focus:bg-orange-50"
+            <InputField
               id="password"
-              type="password"
-              placeholder="****"
-              onChange={handleChange}
-              onBlur={handleBlur}
               value={values.password}
-            />
-            {errors.password && touched.password && (
-              <p className="text-red-500 text-sm absolute inset-x-0 bottom-0">
-                {errors.password}
-              </p>
-            )}
-          </label>
-          <label className="block relative mb-1" htmlFor="confirm-password">
-            <span className="block text-sm font-semibold">
-              Confirm password
-            </span>
-
-            <input
-              className="w-full mb-5 px-2 py-3 border focus:border-yellow-500 border-yellow-600 rounded outline-0 focus:bg-orange-50"
-              id="confirmPassword"
+              label="Password"
               type="password"
               placeholder="****"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.confirmPassword}
+              showError={!!errors.password && touched.password}
+              errorMessage={errors.password}
             />
-            {errors.confirmPassword && touched.confirmPassword && (
-              <p className="text-red-500 text-sm absolute inset-x-0 bottom-0">
-                {errors.confirmPassword}
-              </p>
-            )}
-          </label>
-          <button
-            type="submit"
-            className="self-end border border-green-700 px-2 py-1 rounded bg-green-200 hover:bg-green-300 font-semibold disabled:opacity-60 disabled:hover:bg-green-200"
-            disabled={
-              !!errors.username ||
-              !!errors.password ||
-              !!errors.confirmPassword ||
-              !!errors.name
-            }
-          >
-            Submit
-          </button>
-          <p className="text-sm self-end mt-3">
-            Already have an account?{" "}
-            <Link href="/login">
-              <a className="font-semibold text-blue-600 hover:text-blue-800">
-                login here
-              </a>
-            </Link>
-          </p>
+            <InputField
+              id="confirmPassword"
+              value={values.confirmPassword}
+              label="Confirm password"
+              type="password"
+              placeholder="****"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              showError={!!errors.confirmPassword && touched.confirmPassword}
+              errorMessage={errors.confirmPassword}
+            />
+
+            <Button
+              type="submit"
+              disabled={
+                !!errors.username ||
+                !!errors.password ||
+                !!errors.confirmPassword ||
+                !!errors.name
+              }
+            >
+              Submit
+            </Button>
+            <p className="text-sm self-end mt-3">
+              Already have an account?{" "}
+              <Link href="/login">
+                <a className="font-semibold text-accent-500">login here</a>
+              </Link>
+            </p>
+          </SingleColumn>
         </div>
       </form>
     </div>
